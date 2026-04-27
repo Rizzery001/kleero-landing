@@ -36,7 +36,7 @@ export default function Hero() {
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <div className="relative">
               <PhoneMockup variant="menu" lang={locale} size="md" />
-              <div className="absolute -top-2 -left-2 sm:-left-6 hidden sm:flex items-center gap-2 rounded-full bg-terracotta-500 text-cream-50 px-3 py-1.5 shadow-lg rotate-[-4deg]">
+              <div className="absolute -bottom-3 -left-3 sm:-left-6 hidden sm:flex items-center gap-2 rounded-full bg-terracotta-500 text-cream-50 px-3 py-1.5 shadow-lg rotate-[-4deg] z-30">
                 <span className="h-1.5 w-1.5 rounded-full bg-cream-50 animate-pulse" />
                 <span className="text-[11px] font-medium tracking-wide">{t('phoneCaption')}</span>
               </div>

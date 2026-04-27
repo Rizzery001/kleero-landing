@@ -8,6 +8,9 @@ type Props = {
   lang?: Lang;
 };
 
+const SYSTEM_FONT =
+  '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif';
+
 const COPY: Record<Lang, Record<Variant, any>> = {
   en: {
     menu: {
@@ -100,22 +103,91 @@ function DoubleTick({ size: s }: { size: number }) {
   );
 }
 
+function StatusIcons({ scale }: { scale: number }) {
+  const w = 11 * scale;
+  const h = 8 * scale;
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 3 * scale }}>
+      <svg width={w} height={h} viewBox="0 0 11 8" fill="#000" aria-hidden>
+        <rect x="0" y="6" width="1.5" height="2" rx="0.3" />
+        <rect x="2.5" y="4" width="1.5" height="4" rx="0.3" />
+        <rect x="5" y="2" width="1.5" height="6" rx="0.3" />
+        <rect x="7.5" y="0" width="1.5" height="8" rx="0.3" />
+      </svg>
+      <svg width={w} height={h} viewBox="0 0 11 8" fill="none" stroke="#000" strokeWidth="0.9" strokeLinecap="round" aria-hidden>
+        <path d="M0.8 3.2 Q5.5 -1, 10.2 3.2" />
+        <path d="M2.4 4.8 Q5.5 1.6, 8.6 4.8" />
+        <circle cx="5.5" cy="6.4" r="0.7" fill="#000" />
+      </svg>
+      <svg width={20 * scale} height={9 * scale} viewBox="0 0 20 9" fill="none" aria-hidden>
+        <rect x="0.5" y="0.5" width="16" height="8" rx="2" stroke="#000" strokeWidth="0.7" fill="none" />
+        <rect x="17.2" y="3" width="1.4" height="3" rx="0.3" fill="#000" />
+        <rect x="2" y="2" width="13" height="5" rx="0.5" fill="#000" />
+      </svg>
+    </div>
+  );
+}
+
+function InputBar({ height, fontSize }: { height: number; fontSize: number }) {
+  return (
+    <div
+      className="absolute bottom-0 inset-x-0 flex items-center"
+      style={{
+        height,
+        padding: '0 6px',
+        gap: 5,
+        background: '#F7F5F0',
+        borderTop: '1px solid rgba(0,0,0,0.06)',
+      }}
+    >
+      <svg width={fontSize * 1.6} height={fontSize * 1.6} viewBox="0 0 16 16" fill="none" stroke="#3a3a3a" strokeWidth="1.5" strokeLinecap="round">
+        <line x1="8" y1="3" x2="8" y2="13" />
+        <line x1="3" y1="8" x2="13" y2="8" />
+      </svg>
+      <div
+        className="flex-1 rounded-full bg-white"
+        style={{ height: height * 0.55, border: '1px solid rgba(0,0,0,0.07)' }}
+      />
+      <svg width={fontSize * 1.6} height={fontSize * 1.4} viewBox="0 0 16 14" fill="none" stroke="#3a3a3a" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="1" y="3.5" width="14" height="9" rx="1.5" />
+        <circle cx="8" cy="8" r="2.6" />
+        <path d="M5 3.5 L6 2 H10 L11 3.5" />
+      </svg>
+      <svg width={fontSize * 1.4} height={fontSize * 1.6} viewBox="0 0 14 16" fill="none" stroke="#3a3a3a" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="5" y="2" width="4" height="8" rx="2" />
+        <path d="M2 8 Q2 12, 7 12 Q12 12, 12 8" />
+        <line x1="7" y1="12" x2="7" y2="14" />
+      </svg>
+    </div>
+  );
+}
+
 export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props) {
   const c = COPY[lang][variant];
   const isLg = size === 'md';
 
   const phoneW = isLg ? 280 : 220;
-  const phoneH = isLg ? 560 : 440;
-  const headerH = isLg ? 50 : 40;
-  const notchW = isLg ? 70 : 54;
-  const notchH = isLg ? 16 : 12;
+  const phoneH = isLg ? 580 : 460;
+
+  const statusH = isLg ? 22 : 18;
+  const notchW = isLg ? 76 : 58;
+  const notchH = isLg ? 18 : 14;
+  const headerH = isLg ? 44 : 36;
+  const inputH = isLg ? 38 : 30;
 
   const baseSize = isLg ? 12 : 10;
   const smSize = isLg ? 10.5 : 8.8;
   const tinySize = isLg ? 9 : 7.5;
+  const statusSize = isLg ? 10 : 8.4;
+
+  const iconScale = isLg ? 1 : 0.85;
+  const chatTop = statusH + headerH;
 
   return (
-    <div className="relative shadow-2xl" style={{ width: phoneW, height: phoneH }}>
+    <div
+      className="relative shadow-2xl"
+      style={{ width: phoneW, height: phoneH, fontFamily: SYSTEM_FONT }}
+    >
       <div className="absolute inset-0 rounded-[34px]" style={{ background: 'linear-gradient(145deg, #2a2a2a, #0e0e0e)' }} />
       <div className="absolute inset-[2px] rounded-[32px] bg-black" />
 
@@ -130,20 +202,50 @@ export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props
         />
 
         <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 bg-black z-30"
-          style={{
-            width: notchW,
-            height: notchH,
-            borderBottomLeftRadius: 10,
-            borderBottomRightRadius: 10,
-          }}
-        />
+          className="absolute top-0 inset-x-0 z-30"
+          style={{ height: statusH, background: '#F7F5F0' }}
+        >
+          <span
+            className="absolute"
+            style={{
+              left: isLg ? 14 : 10,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              fontSize: statusSize,
+              fontWeight: 600,
+              color: '#000',
+            }}
+          >
+            {c.time || '9:42'}
+          </span>
+
+          <div
+            className="absolute top-0 left-1/2 -translate-x-1/2 bg-black"
+            style={{
+              width: notchW,
+              height: notchH,
+              borderBottomLeftRadius: 10,
+              borderBottomRightRadius: 10,
+            }}
+          />
+
+          <div
+            className="absolute"
+            style={{
+              right: isLg ? 12 : 8,
+              top: '50%',
+              transform: 'translateY(-50%)',
+            }}
+          >
+            <StatusIcons scale={iconScale} />
+          </div>
+        </div>
 
         <div
-          className="absolute top-0 inset-x-0 flex items-center gap-2 z-20 border-b border-black/10"
+          className="absolute inset-x-0 flex items-center gap-2 z-20 border-b border-black/10"
           style={{
+            top: statusH,
             height: headerH,
-            paddingTop: notchH + 4,
             paddingLeft: 8,
             paddingRight: 8,
             background: '#F7F5F0',
@@ -172,12 +274,23 @@ export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props
           >
             <span className="font-bold text-white" style={{ fontSize: isLg ? 10 : 8 }}>K</span>
           </div>
-          <span className="font-semibold truncate" style={{ color: '#111', fontSize: baseSize }}>kleero</span>
+          <span
+            className="font-semibold truncate"
+            style={{ color: '#111', fontSize: baseSize }}
+          >
+            kleero
+          </span>
         </div>
 
         <div
-          className="absolute inset-x-0 bottom-0 flex flex-col"
-          style={{ top: headerH, padding: isLg ? 8 : 6, gap: isLg ? 6 : 4 }}
+          className="absolute inset-x-0 flex flex-col"
+          style={{
+            top: chatTop,
+            bottom: inputH,
+            padding: isLg ? 8 : 6,
+            gap: isLg ? 6 : 4,
+            textAlign: 'left',
+          }}
         >
           {variant === 'menu' && (
             <div
@@ -187,17 +300,18 @@ export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props
                 borderRadius: isLg ? 8 : 6,
                 padding: isLg ? '7px 9px' : '5px 7px',
                 maxWidth: '90%',
+                textAlign: 'left',
               }}
             >
-              <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.35 }}>
+              <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.4, margin: 0 }}>
                 {c.greetingPre}
                 <strong>{c.greetingBold}</strong>
                 {c.greetingPost}
               </p>
-              <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.35, marginTop: 6 }}>
+              <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.4, margin: 0, marginTop: 8 }}>
                 {c.prompt}
               </p>
-              <div style={{ marginTop: 6, display: 'flex', flexDirection: 'column', gap: isLg ? 4 : 3 }}>
+              <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', gap: isLg ? 4 : 3 }}>
                 {c.options.map((opt: string[], i: number) => (
                   <div
                     key={i}
@@ -219,13 +333,12 @@ export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props
                 style={{
                   display: 'flex',
                   justifyContent: 'flex-end',
-                  alignItems: 'center',
-                  marginTop: 4,
+                  marginTop: 6,
                   fontSize: tinySize,
                   color: '#888',
                 }}
               >
-                <span>{c.time}</span>
+                {c.time}
               </div>
             </div>
           )}
@@ -280,9 +393,10 @@ export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props
                   borderRadius: isLg ? 8 : 6,
                   padding: isLg ? '6px 9px' : '4px 7px',
                   maxWidth: '82%',
+                  textAlign: 'left',
                 }}
               >
-                <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.35 }}>{c.analyzing}</p>
+                <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.4, margin: 0 }}>{c.analyzing}</p>
                 <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 2, fontSize: tinySize, color: '#888' }}>
                   {c.timeBot1}
                 </div>
@@ -295,12 +409,13 @@ export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props
                   borderRadius: isLg ? 8 : 6,
                   padding: isLg ? '7px 9px' : '5px 7px',
                   maxWidth: '90%',
+                  textAlign: 'left',
                 }}
               >
-                <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.35, fontWeight: 600 }}>
+                <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.4, fontWeight: 600, margin: 0 }}>
                   📃 {c.recognizedTitle}
                 </p>
-                <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.35, marginTop: 4, fontWeight: 600 }}>
+                <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.4, marginTop: 4, fontWeight: 600, margin: 0 }}>
                   {c.store}
                 </p>
                 <div style={{ marginTop: 3, display: 'flex', flexDirection: 'column', gap: 1, color: '#333', fontSize: smSize }}>
@@ -308,7 +423,7 @@ export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props
                     <div key={i}>• {item}</div>
                   ))}
                 </div>
-                <p style={{ color: '#0a8754', fontSize: smSize, lineHeight: 1.35, marginTop: 6, fontWeight: 500 }}>
+                <p style={{ color: '#0a8754', fontSize: smSize, lineHeight: 1.4, marginTop: 6, fontWeight: 500, margin: 0 }}>
                   {c.footer}
                 </p>
                 <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 2, fontSize: tinySize, color: '#888' }}>
@@ -326,12 +441,15 @@ export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props
                 borderRadius: isLg ? 8 : 6,
                 padding: isLg ? '7px 9px' : '5px 7px',
                 maxWidth: '94%',
+                textAlign: 'left',
               }}
             >
-              <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.35, fontWeight: 600 }}>
+              <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.4, fontWeight: 600, margin: 0 }}>
                 📊 {c.title}
               </p>
-              <p style={{ color: '#666', fontSize: tinySize, marginTop: 1 }}>{c.subtitle}</p>
+              <p style={{ color: '#666', fontSize: tinySize, marginTop: 1, margin: 0 }}>
+                {c.subtitle}
+              </p>
               <div style={{ marginTop: 6, display: 'flex', flexDirection: 'column', gap: isLg ? 4 : 3 }}>
                 {c.tiers.map((tier: any, i: number) => (
                   <div
@@ -363,7 +481,7 @@ export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props
                   </div>
                 ))}
               </div>
-              <p style={{ color: '#0a8754', fontSize: smSize, lineHeight: 1.35, marginTop: 6, fontWeight: 500 }}>
+              <p style={{ color: '#0a8754', fontSize: smSize, lineHeight: 1.4, marginTop: 6, fontWeight: 500, margin: 0 }}>
                 {c.savings}
               </p>
               <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 2, fontSize: tinySize, color: '#888' }}>
@@ -372,6 +490,8 @@ export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props
             </div>
           )}
         </div>
+
+        <InputBar height={inputH} fontSize={baseSize} />
       </div>
     </div>
   );
