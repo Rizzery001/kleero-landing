@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FAF7F2"/>
+      <stop offset="100%" stop-color="#F2EDE2"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="80%" cy="20%" r="50%">
+      <stop offset="0%" stop-color="#D26A3C" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#D26A3C" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Logo -->
+  <g transform="translate(80, 80)">
+    <rect width="56" height="56" rx="14" fill="#143A2C"/>
+    <path d="M17 16v24" stroke="#FAF7F2" stroke-width="4" stroke-linecap="round"/>
+    <path d="M17 28l12-12" stroke="#FAF7F2" stroke-width="4" stroke-linecap="round"/>
+    <path d="M17 28l14 12" stroke="#D26A3C" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="38" cy="19" r="2.8" fill="#D26A3C"/>
+    <text x="74" y="40" font-family="Georgia, serif" font-size="32" font-weight="500" fill="#143A2C">kleero</text>
+  </g>
+
+  <!-- Main headline -->
+  <text x="80" y="290" font-family="Georgia, serif" font-size="78" font-weight="500" fill="#143A2C" letter-spacing="-2">
+    Save $5,000+ a year
+  </text>
+  <text x="80" y="380" font-family="Georgia, serif" font-size="78" font-weight="500" fill="#143A2C" letter-spacing="-2">
+    on supplier costs.
+  </text>
+
+  <!-- Italic line -->
+  <text x="80" y="470" font-family="Georgia, serif" font-style="italic" font-size="58" font-weight="400" fill="#D26A3C" letter-spacing="-1">
+    Right inside WhatsApp.
+  </text>
+
+  <!-- Footer label -->
+  <line x1="80" y1="550" x2="120" y2="550" stroke="#143A2C" stroke-width="1.5" opacity="0.4"/>
+  <text x="135" y="556" font-family="system-ui, sans-serif" font-size="20" font-weight="500" fill="#5A6259" letter-spacing="2">
+    AI ASSISTANT FOR RESTAURANTS · KLEERO.CO
+  </text>
+</svg>

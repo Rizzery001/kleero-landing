@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-cream: #FAF7F2;
+    --color-forest: #143A2C;
+    --color-terracotta: #D26A3C;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: theme('colors.cream.100');
+    color: theme('colors.ink.900');
+    font-feature-settings: 'ss01', 'cv11';
+  }
+
+  /* Subtle paper grain texture on cream background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.23 0 0 0 0 0.17 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Display headings get tight, slightly italic Fraunces */
+  h1, h2, h3 {
+    font-family: var(--font-fraunces), Georgia, serif;
+    font-feature-settings: 'ss01', 'liga';
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-8xl px-5 sm:px-8 lg:px-12;
+  }
+
+  /* Primary CTA — terracotta */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2.5
+      rounded-full px-6 py-4
+      bg-terracotta-500 hover:bg-terracotta-600
+      text-cream-50 font-medium tracking-tight
+      transition-all duration-300
+      shadow-[0_4px_14px_rgba(210,106,60,0.3)]
+      hover:shadow-[0_6px_20px_rgba(210,106,60,0.4)]
+      hover:-translate-y-0.5
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-400 focus-visible:ring-offset-2;
+  }
+
+  /* Secondary CTA — forest outline */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2.5
+      rounded-full px-6 py-4
+      bg-forest-600 hover:bg-forest-700
+      text-cream-50 font-medium tracking-tight
+      transition-all duration-300
+      shadow-[0_4px_14px_rgba(20,58,44,0.25)]
+      hover:shadow-[0_6px_20px_rgba(20,58,44,0.35)]
+      hover:-translate-y-0.5
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-forest-400 focus-visible:ring-offset-2;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2.5
+      rounded-full px-6 py-3.5
+      bg-transparent border border-forest-600/20
+      text-forest-700 font-medium tracking-tight
+      transition-all duration-300
+      hover:bg-forest-600 hover:text-cream-50 hover:border-forest-600;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em]
+      font-medium text-forest-500;
+  }
+
+  .eyebrow::before {
+    content: '';
+    @apply h-px w-6 bg-forest-500/40 inline-block;
+  }
+
+  /* Section padding */
+  .section-y {
+    @apply py-20 sm:py-28 lg:py-36;
+  }
+}
+
+/* Hide scrollbar but allow scroll */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* z-fix so content sits above noise overlay */
+main, header, footer { position: relative; z-index: 1; }

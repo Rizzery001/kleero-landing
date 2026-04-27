@@ -1,0 +1,134 @@
+{
+  "meta": {
+    "title": "KLEERO — Ahorro inteligente para restaurantes en WhatsApp",
+    "description": "Ahorra $5,000+ al año en proveedores. Asistente IA para restaurantes pequeños en WhatsApp. Demo gratis, sin instalar nada."
+  },
+  "nav": {
+    "switchLanguage": "Cambiar idioma"
+  },
+  "hero": {
+    "eyebrow": "Para restaurantes y food trucks",
+    "title_1": "Ahorro inteligente",
+    "title_2": "para tu restaurante",
+    "title_3": "directamente en WhatsApp.",
+    "subtitle": "Ahorra $5,000+ al año en proveedores. Sin apps. Sin setup. 60 segundos hasta el primer resultado.",
+    "ctaWhatsapp": "Abrir en WhatsApp",
+    "ctaTelegram": "Abrir en Telegram",
+    "ctaMicro": "Sin registro · Demo gratis · 60 segundos hasta el primer resultado",
+    "phoneCaption": "Demo en vivo · Telegram"
+  },
+  "trust": {
+    "item1": "Sin apps necesarias",
+    "item2": "60 segundos hasta resultados",
+    "item3": "Demo gratis · sin tarjeta"
+  },
+  "problems": {
+    "eyebrow": "Tres lugares donde tu dinero se escapa",
+    "title": "Tu margen vive o muere por tres cosas.",
+    "subtitle": "Revisamos decenas de cocinas pequeñas. Las mismas fugas, siempre.",
+    "card1": {
+      "amount": "$3,000+",
+      "amountLabel": "perdidos al año",
+      "title": "Pagas de más a proveedores",
+      "body": "No sabes qué proveedor es el más barato. KLEERO escanea tus recibos y encuentra dónde comprar 8–15% más barato cerca de ti."
+    },
+    "card2": {
+      "amount": "$2,000+",
+      "amountLabel": "tirados al año",
+      "title": "Comida que se desperdicia",
+      "body": "KLEERO analiza tu menú y predice qué productos se van a echar a perder primero — así ordenas más inteligente y desperdicias menos."
+    },
+    "card3": {
+      "amount": "$1,200+",
+      "amountLabel": "perdidos por evento",
+      "title": "Días ocupados que pierdes",
+      "body": "Encuentra conciertos, festivales y eventos deportivos cerca — y recibe un plan de preparación antes de que llegue la avalancha."
+    }
+  },
+  "how": {
+    "eyebrow": "Cómo funciona",
+    "title": "Tres pasos. Un chat.",
+    "subtitle": "Sin software. Sin entrenamiento. El mismo WhatsApp que ya usas todo el día.",
+    "step1": {
+      "label": "Paso 01",
+      "title": "Abre el bot",
+      "body": "Abre KLEERO en WhatsApp o Telegram. Elige tu idioma (EN/ES). Elige tu tipo de negocio. Listo en 30 segundos."
+    },
+    "step2": {
+      "label": "Paso 02",
+      "title": "Manda un recibo",
+      "body": "Toma foto de tu factura de proveedor. KLEERO lee cada producto — incluso recibos escritos a mano en cualquier idioma."
+    },
+    "step3": {
+      "label": "Paso 03",
+      "title": "Recibe el ahorro",
+      "body": "KLEERO compara precios con proveedores locales y te muestra dónde comprar más barato — con enlaces reales, no suposiciones."
+    }
+  },
+  "comparison": {
+    "eyebrow": "Cómo somos diferentes",
+    "title": "Hecho para cocinas, no para juntas directivas.",
+    "headerKleero": "KLEERO",
+    "headerOthers": "Toast / Marketman",
+    "rows": {
+      "channel": {
+        "label": "Canal",
+        "kleero": "WhatsApp / Telegram",
+        "others": "App + Dashboard"
+      },
+      "setup": {
+        "label": "Tiempo de setup",
+        "kleero": "0 minutos",
+        "others": "Días de entrenamiento"
+      },
+      "cost": {
+        "label": "Costo de demo",
+        "kleero": "Gratis",
+        "others": "$200–500/mes"
+      },
+      "languages": {
+        "label": "Idiomas",
+        "kleero": "EN · ES · RU",
+        "others": "Solo EN"
+      },
+      "suppliers": {
+        "label": "Proveedores",
+        "kleero": "Locales en tu país",
+        "others": "Solo EE.UU."
+      },
+      "ocr": {
+        "label": "Análisis IA de recibos",
+        "kleero": "Integrado",
+        "others": "Captura manual"
+      },
+      "events": {
+        "label": "Predicción de eventos",
+        "kleero": "Automática",
+        "others": "No incluida"
+      }
+    },
+    "cta": "Pruébalo gratis en WhatsApp"
+  },
+  "referral": {
+    "eyebrow": "Programa de referidos",
+    "title": "Trae a un amigo, gana un mes gratis.",
+    "body": "Por cada restaurante que refieras y se una a KLEERO, ganas +1 mes de acceso completo gratis. Sin límite en cuántos amigos puedes traer.",
+    "cta": "Obtener mi código de referido"
+  },
+  "finalCta": {
+    "title": "¿Listo para ahorrar",
+    "titleHighlight": "$5,000+",
+    "titleEnd": "este año?",
+    "subtitle": "Abre KLEERO en WhatsApp o Telegram. Demo gratis. Sin setup. 60 segundos.",
+    "ctaWhatsapp": "Empezar en WhatsApp",
+    "ctaTelegram": "Empezar en Telegram"
+  },
+  "footer": {
+    "tagline": "Ahorro IA dentro de WhatsApp.",
+    "contact": "Contacto",
+    "legal": "Legal",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio",
+    "rights": "Todos los derechos reservados."
+  }
+}
