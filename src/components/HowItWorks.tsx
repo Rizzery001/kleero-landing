@@ -12,31 +12,21 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section className="section-y bg-forest-700 text-cream-50 relative overflow-hidden">
-      {/* Decorative grain on dark */}
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-30 mix-blend-overlay"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E\")",
-        }}
-      />
-
-      <div className="container-x relative">
+    <section className="py-20 sm:py-24 lg:py-28 bg-cream-200/40 border-y border-line">
+      <div className="container-x">
         <div className="max-w-3xl">
-          <span className="eyebrow mb-5 text-cream-200" style={{ color: '#C5D9CD' }}>
+          <span className="eyebrow mb-5 text-forest-700/80">
             {t('eyebrow')}
           </span>
           <h2 className="font-display font-medium tracking-tightest leading-[1.05] text-[2.2rem] sm:text-[2.8rem] lg:text-[3.4rem] mt-4">
             {t('title')}
           </h2>
-          <p className="mt-5 text-lg text-cream-200/90 max-w-2xl">
+          <p className="mt-5 text-lg text-forest-700/75 max-w-2xl">
             {t('subtitle')}
           </p>
         </div>
 
-        <div className="mt-16 lg:mt-24 space-y-24 lg:space-y-32">
+        <div className="mt-16 lg:mt-20 space-y-14 lg:space-y-20">
           {steps.map((step, i) => {
             const reverse = i % 2 === 1;
             return (
@@ -47,16 +37,18 @@ export default function HowItWorks() {
                 }`}
               >
                 <div className="lg:col-span-7">
-                  <div className="font-display text-7xl lg:text-8xl font-medium text-terracotta-400/90 leading-none tracking-tighter mb-5 italic">
-                    {String(i + 1).padStart(2, '0')}
-                  </div>
-                  <div className="text-xs uppercase tracking-[0.18em] text-cream-200/70 mb-3 font-medium">
-                    {t(`${step.key}.label`)}
+                  <div className="flex items-baseline gap-4 mb-4">
+                    <div className="font-display text-3xl lg:text-4xl font-medium leading-none tracking-tight text-terracotta-500">
+                      {String(i + 1).padStart(2, '0')}
+                    </div>
+                    <div className="text-xs uppercase tracking-[0.18em] text-forest-700/60 font-medium">
+                      {t(`${step.key}.label`)}
+                    </div>
                   </div>
                   <h3 className="font-display text-3xl lg:text-4xl font-medium leading-tight">
                     {t(`${step.key}.title`)}
                   </h3>
-                  <p className="mt-5 text-lg text-cream-200/85 max-w-xl leading-relaxed">
+                  <p className="mt-5 text-lg text-forest-700/80 max-w-xl leading-relaxed">
                     {t(`${step.key}.body`)}
                   </p>
                 </div>
