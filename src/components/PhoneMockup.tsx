@@ -169,35 +169,43 @@ export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props
   const phoneW = isLg ? 280 : 220;
   const phoneH = isLg ? 580 : 460;
 
-  const statusH = isLg ? 22 : 18;
-  const notchW = isLg ? 76 : 58;
-  const notchH = isLg ? 18 : 14;
+  const statusH = isLg ? 30 : 24;
+  const islandW = isLg ? 95 : 72;
+  const islandH = isLg ? 24 : 19;
+  const islandTop = isLg ? 6 : 5;
   const headerH = isLg ? 44 : 36;
   const inputH = isLg ? 38 : 30;
 
   const baseSize = isLg ? 12 : 10;
   const smSize = isLg ? 10.5 : 8.8;
   const tinySize = isLg ? 9 : 7.5;
-  const statusSize = isLg ? 10 : 8.4;
+  const statusSize = isLg ? 10.5 : 8.8;
 
   const iconScale = isLg ? 1 : 0.85;
   const chatTop = statusH + headerH;
+
+  const botRadius = isLg ? '4px 12px 12px 12px' : '3px 9px 9px 9px';
+  const userRadius = isLg ? '12px 4px 12px 12px' : '9px 3px 9px 9px';
+  const botRadiusFollow = isLg ? '12px' : '9px';
 
   return (
     <div
       className="relative shadow-2xl"
       style={{ width: phoneW, height: phoneH, fontFamily: SYSTEM_FONT }}
     >
-      <div className="absolute inset-0 rounded-[34px]" style={{ background: 'linear-gradient(145deg, #2a2a2a, #0e0e0e)' }} />
-      <div className="absolute inset-[2px] rounded-[32px] bg-black" />
+      <div
+        className="absolute inset-0 rounded-[36px]"
+        style={{ background: 'linear-gradient(155deg, #2c2c2c 0%, #1a1a1a 50%, #0a0a0a 100%)' }}
+      />
+      <div className="absolute inset-[2px] rounded-[34px] bg-black" />
 
-      <div className="absolute inset-[5px] rounded-[28px] overflow-hidden" style={{ background: '#EFEAE2' }}>
+      <div className="absolute inset-[5px] rounded-[30px] overflow-hidden" style={{ background: '#EFEAE2' }}>
         <div
           className="absolute inset-0"
           style={{
-            opacity: 0.08,
+            opacity: 0.09,
             backgroundImage:
-              "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><g fill='%23000'><circle cx='10' cy='12' r='2'/><circle cx='45' cy='28' r='1.5'/><circle cx='62' cy='14' r='1'/><circle cx='25' cy='52' r='2.2'/><circle cx='68' cy='60' r='1.8'/><circle cx='12' cy='72' r='1.3'/></g></svg>\")",
+              "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'><g fill='%23000'><circle cx='12' cy='15' r='1.8'/><circle cx='48' cy='8' r='1.1'/><circle cx='75' cy='22' r='1.4'/><circle cx='110' cy='12' r='1'/><circle cx='128' cy='32' r='1.6'/><circle cx='28' cy='40' r='1.2'/><circle cx='62' cy='48' r='1.7'/><circle cx='95' cy='38' r='1.1'/><circle cx='15' cy='62' r='1.3'/><circle cx='44' cy='72' r='1.8'/><circle cx='80' cy='65' r='1.1'/><circle cx='115' cy='75' r='1.5'/><circle cx='30' cy='95' r='1.4'/><circle cx='65' cy='90' r='1.1'/><circle cx='100' cy='105' r='1.7'/><circle cx='10' cy='118' r='1.3'/><circle cx='52' cy='118' r='1.5'/><circle cx='88' cy='128' r='1.1'/><circle cx='125' cy='115' r='1.4'/><path d='M70 32 q3 -2 6 0 q-3 2 -6 0' /><path d='M22 80 q3 -2 6 0 q-3 2 -6 0'/><path d='M118 60 q3 -2 6 0 q-3 2 -6 0'/></g></svg>\")",
           }}
         />
 
@@ -208,7 +216,7 @@ export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props
           <span
             className="absolute"
             style={{
-              left: isLg ? 14 : 10,
+              left: isLg ? 18 : 12,
               top: '50%',
               transform: 'translateY(-50%)',
               fontSize: statusSize,
@@ -220,19 +228,19 @@ export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props
           </span>
 
           <div
-            className="absolute top-0 left-1/2 -translate-x-1/2 bg-black"
+            className="absolute left-1/2 -translate-x-1/2 bg-black"
             style={{
-              width: notchW,
-              height: notchH,
-              borderBottomLeftRadius: 10,
-              borderBottomRightRadius: 10,
+              top: islandTop,
+              width: islandW,
+              height: islandH,
+              borderRadius: 999,
             }}
           />
 
           <div
             className="absolute"
             style={{
-              right: isLg ? 12 : 8,
+              right: isLg ? 14 : 10,
               top: '50%',
               transform: 'translateY(-50%)',
             }}
@@ -297,15 +305,15 @@ export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props
               className="self-start shadow-sm"
               style={{
                 background: '#fff',
-                borderRadius: isLg ? 8 : 6,
+                borderRadius: botRadius,
                 padding: isLg ? '7px 9px' : '5px 7px',
-                maxWidth: '90%',
+                maxWidth: '92%',
                 textAlign: 'left',
               }}
             >
               <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.4, margin: 0 }}>
                 {c.greetingPre}
-                <strong>{c.greetingBold}</strong>
+                <strong style={{ whiteSpace: 'nowrap' }}>{c.greetingBold}</strong>
                 {c.greetingPost}
               </p>
               <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.4, margin: 0, marginTop: 8 }}>
@@ -349,7 +357,7 @@ export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props
                 className="self-end shadow-sm"
                 style={{
                   background: '#D9FDD3',
-                  borderRadius: isLg ? 8 : 6,
+                  borderRadius: userRadius,
                   padding: 3,
                   maxWidth: '60%',
                 }}
@@ -390,7 +398,7 @@ export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props
                 className="self-start shadow-sm"
                 style={{
                   background: '#fff',
-                  borderRadius: isLg ? 8 : 6,
+                  borderRadius: botRadius,
                   padding: isLg ? '6px 9px' : '4px 7px',
                   maxWidth: '82%',
                   textAlign: 'left',
@@ -406,9 +414,9 @@ export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props
                 className="self-start shadow-sm"
                 style={{
                   background: '#fff',
-                  borderRadius: isLg ? 8 : 6,
+                  borderRadius: botRadiusFollow,
                   padding: isLg ? '7px 9px' : '5px 7px',
-                  maxWidth: '90%',
+                  maxWidth: '92%',
                   textAlign: 'left',
                 }}
               >
@@ -438,7 +446,7 @@ export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props
               className="self-start shadow-sm"
               style={{
                 background: '#fff',
-                borderRadius: isLg ? 8 : 6,
+                borderRadius: botRadius,
                 padding: isLg ? '7px 9px' : '5px 7px',
                 maxWidth: '94%',
                 textAlign: 'left',
