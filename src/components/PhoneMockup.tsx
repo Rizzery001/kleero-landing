@@ -1,222 +1,378 @@
 type Variant = 'menu' | 'receipt' | 'waste';
+type Size = 'sm' | 'md';
 type Lang = 'en' | 'es';
 
 type Props = {
   variant: Variant;
+  size?: Size;
   lang?: Lang;
-  className?: string;
-  size?: 'sm' | 'md';
 };
 
-const COPY = {
+const COPY: Record<Lang, Record<Variant, any>> = {
   en: {
-    botName: 'KLEERO',
-    botStatus: 'online',
     menu: {
-      welcome: 'Hi! I help small restaurants save on suppliers, food waste, and busy days.',
-      pick: 'What do you want to do today?',
-      btn1: '💰  Find Savings',
-      btn2: '🥗  Reduce Waste',
-      btn3: '📅  Find Events',
-      btn4: '📊  Weekly Report',
+      greetingPre: 'Hi! KLEERO is set up for ',
+      greetingBold: 'your food truck',
+      greetingPost: '.',
+      prompt: 'What do you want to do?',
+      options: [
+        ['1', '💰', 'Find supplier savings'],
+        ['2', '🗑', 'Cut food waste'],
+        ['3', '🎪', 'Prep for events'],
+        ['4', '📊', 'Sample weekly report'],
+      ],
+      time: '9:42',
     },
     receipt: {
-      user: '📷  IMG_4421.jpg',
-      bot1: 'Receipt recognized ✅',
-      bot2: '8 items · Restaurant Depot · $327.40',
-      items: [
-        ['Avocado Hass', '12 lb', '$28.80'],
-        ['Cilantro', '2 bunch', '$3.40'],
-        ['Tortillas (corn)', '5 kg', '$24.50'],
-        ['Lime', '4 kg', '$11.20'],
-      ],
-      bot3: 'Found 3 cheaper options nearby ↓',
+      photoLabel: 'Receipt',
+      analyzing: '🔍 Analyzing items in Houston…',
+      recognizedTitle: 'Receipt recognized',
+      store: 'Ipsum Café',
+      items: ['Cappuccino', 'Croissant'],
+      footer: 'Found 3 cheaper options nearby ↓',
+      timeUser: '9:43',
+      timeBot1: '9:43',
+      timeBot2: '9:44',
     },
     waste: {
-      user: 'Mexican kitchen 🌮',
-      bot1: 'Spoilage forecast — next 3 days:',
-      items: [
-        { dot: 'red', name: 'Cilantro', sub: 'Spoils in ~36h · use first' },
-        { dot: 'red', name: 'Avocado Hass', sub: 'Ripe now · 24h window' },
-        { dot: 'yellow', name: 'Tortillas (corn)', sub: '4 days left' },
-        { dot: 'yellow', name: 'Lime', sub: '1 week' },
-        { dot: 'green', name: 'Dried beans', sub: 'Months · safe' },
+      title: 'EXAMPLE — Mexican kitchen',
+      subtitle: 'Spoilage risk forecast',
+      tiers: [
+        { color: 'red', label: 'High risk', items: 'Cilantro, Avocado' },
+        { color: 'amber', label: 'Medium', items: 'Carnitas, Sour cream' },
+        { color: 'green', label: 'Low risk', items: 'Tortillas, Rice' },
       ],
+      savings: '💰 Estimated savings ~$200-400/month',
+      time: '9:45',
     },
   },
   es: {
-    botName: 'KLEERO',
-    botStatus: 'en línea',
     menu: {
-      welcome: '¡Hola! Ayudo a restaurantes pequeños a ahorrar en proveedores, desperdicio y días ocupados.',
-      pick: '¿Qué quieres hacer hoy?',
-      btn1: '💰  Encontrar Ahorros',
-      btn2: '🥗  Reducir Desperdicio',
-      btn3: '📅  Buscar Eventos',
-      btn4: '📊  Reporte Semanal',
+      greetingPre: '¡Hola! KLEERO está listo para ',
+      greetingBold: 'tu food truck',
+      greetingPost: '.',
+      prompt: '¿Qué quieres hacer?',
+      options: [
+        ['1', '💰', 'Encontrar ahorros'],
+        ['2', '🗑', 'Reducir mermas'],
+        ['3', '🎪', 'Preparar eventos'],
+        ['4', '📊', 'Reporte semanal'],
+      ],
+      time: '9:42',
     },
     receipt: {
-      user: '📷  IMG_4421.jpg',
-      bot1: 'Recibo reconocido ✅',
-      bot2: '8 artículos · Restaurant Depot · $327.40',
-      items: [
-        ['Aguacate Hass', '12 lb', '$28.80'],
-        ['Cilantro', '2 manojo', '$3.40'],
-        ['Tortillas (maíz)', '5 kg', '$24.50'],
-        ['Limón', '4 kg', '$11.20'],
-      ],
-      bot3: 'Encontré 3 opciones más baratas cerca ↓',
+      photoLabel: 'Recibo',
+      analyzing: '🔍 Analizando productos en Houston…',
+      recognizedTitle: 'Recibo reconocido',
+      store: 'Ipsum Café',
+      items: ['Cappuccino', 'Croissant'],
+      footer: '3 alternativas más baratas cerca ↓',
+      timeUser: '9:43',
+      timeBot1: '9:43',
+      timeBot2: '9:44',
     },
     waste: {
-      user: 'Cocina mexicana 🌮',
-      bot1: 'Predicción de caducidad — próximos 3 días:',
-      items: [
-        { dot: 'red', name: 'Cilantro', sub: 'Caduca en ~36h · usar primero' },
-        { dot: 'red', name: 'Aguacate Hass', sub: 'Maduro · 24h disponibles' },
-        { dot: 'yellow', name: 'Tortillas (maíz)', sub: '4 días restantes' },
-        { dot: 'yellow', name: 'Limón', sub: '1 semana' },
-        { dot: 'green', name: 'Frijoles secos', sub: 'Meses · seguro' },
+      title: 'EJEMPLO — Cocina Mexicana',
+      subtitle: 'Análisis de mermas',
+      tiers: [
+        { color: 'red', label: 'Alto riesgo', items: 'Cilantro, Aguacate' },
+        { color: 'amber', label: 'Riesgo medio', items: 'Carnitas, Crema' },
+        { color: 'green', label: 'Bajo riesgo', items: 'Tortillas, Arroz' },
       ],
+      savings: '💰 Ahorro estimado ~$200-400/mes',
+      time: '9:45',
     },
   },
-} as const;
+};
 
-const dotColor = (d: string) =>
-  d === 'red' ? '#DC2626' : d === 'yellow' ? '#EAB308' : '#16A34A';
+const colorClass: Record<string, string> = {
+  red: 'bg-red-500',
+  amber: 'bg-amber-400',
+  green: 'bg-green-500',
+};
 
-export default function PhoneMockup({
-  variant,
-  lang = 'en',
-  className = '',
-  size = 'md',
-}: Props) {
-  const t = COPY[lang];
+function DoubleTick({ size: s }: { size: number }) {
+  return (
+    <svg width={s} height={s * 0.75} viewBox="0 0 16 12" fill="none" aria-hidden>
+      <path d="M0.5 6 L4 10 L9 2" stroke="#53BDEB" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M5.5 6 L9 10 L14 2" stroke="#53BDEB" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
-  const sizeClass = size === 'sm'
-    ? 'w-[220px] sm:w-[240px]'
-    : 'w-[240px] sm:w-[268px]';
+export default function PhoneMockup({ variant, size = 'md', lang = 'en' }: Props) {
+  const c = COPY[lang][variant];
+  const isLg = size === 'md';
+
+  const phoneW = isLg ? 280 : 220;
+  const phoneH = isLg ? 560 : 440;
+  const headerH = isLg ? 50 : 40;
+  const notchW = isLg ? 70 : 54;
+  const notchH = isLg ? 16 : 12;
+
+  const baseSize = isLg ? 12 : 10;
+  const smSize = isLg ? 10.5 : 8.8;
+  const tinySize = isLg ? 9 : 7.5;
 
   return (
-    <div
-      className={`relative ${className}`}
-      style={{ filter: 'drop-shadow(0 20px 36px rgba(20, 58, 44, 0.18))' }}
-    >
-      <div className={`relative mx-auto ${sizeClass} rounded-[2.2rem] bg-forest-900 p-2 ring-1 ring-forest-900/40`}>
-        <div className="relative overflow-hidden rounded-[1.7rem] bg-[#EFEAE0] aspect-[9/19.5]">
-          <div className="flex items-center gap-2.5 bg-[#5288c1] px-3 py-2.5 text-cream-50">
-            <div className="h-7 w-7 rounded-full bg-cream-50 flex items-center justify-center overflow-hidden">
-              <svg viewBox="0 0 1080 1080" className="h-4 w-4" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M657.249 747.474L611.14 626.532C601.216 600.495 577.034 582.831 549.503 581.057L547.059 747.474H369.14L371.202 613.694C371.612 586.922 352.998 559.476 327.305 559.476C293.471 559.476 261 527.067 261 488.763V347.004H429.612V488.763C429.612 517.573 446.81 542.348 471.492 553.433L543.56 347H710.038L636.224 558.462H714.783C745.435 558.462 772.621 578.167 782.151 607.302L828 747.474H657.249Z"
-                  fill="#143A2C"
-                />
-              </svg>
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="text-[11px] font-semibold leading-tight truncate">
-                {t.botName}
-              </div>
-              <div className="text-[9px] opacity-80 leading-tight">
-                {t.botStatus}
-              </div>
-            </div>
-            <div className="text-cream-50/80 text-[10px]">⋯</div>
+    <div className="relative shadow-2xl" style={{ width: phoneW, height: phoneH }}>
+      <div className="absolute inset-0 rounded-[34px]" style={{ background: 'linear-gradient(145deg, #2a2a2a, #0e0e0e)' }} />
+      <div className="absolute inset-[2px] rounded-[32px] bg-black" />
+
+      <div className="absolute inset-[5px] rounded-[28px] overflow-hidden" style={{ background: '#EFEAE2' }}>
+        <div
+          className="absolute inset-0"
+          style={{
+            opacity: 0.08,
+            backgroundImage:
+              "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><g fill='%23000'><circle cx='10' cy='12' r='2'/><circle cx='45' cy='28' r='1.5'/><circle cx='62' cy='14' r='1'/><circle cx='25' cy='52' r='2.2'/><circle cx='68' cy='60' r='1.8'/><circle cx='12' cy='72' r='1.3'/></g></svg>\")",
+          }}
+        />
+
+        <div
+          className="absolute top-0 left-1/2 -translate-x-1/2 bg-black z-30"
+          style={{
+            width: notchW,
+            height: notchH,
+            borderBottomLeftRadius: 10,
+            borderBottomRightRadius: 10,
+          }}
+        />
+
+        <div
+          className="absolute top-0 inset-x-0 flex items-center gap-2 z-20 border-b border-black/10"
+          style={{
+            height: headerH,
+            paddingTop: notchH + 4,
+            paddingLeft: 8,
+            paddingRight: 8,
+            background: '#F7F5F0',
+          }}
+        >
+          <svg
+            width={isLg ? 11 : 9}
+            height={isLg ? 14 : 11}
+            viewBox="0 0 12 16"
+            fill="none"
+            stroke="#3a3a3a"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden
+          >
+            <polyline points="9,2 3,8 9,14" />
+          </svg>
+          <div
+            className="rounded-full flex items-center justify-center flex-shrink-0"
+            style={{
+              width: isLg ? 24 : 19,
+              height: isLg ? 24 : 19,
+              background: 'linear-gradient(135deg, #C7B8FF, #9B82F0)',
+            }}
+          >
+            <span className="font-bold text-white" style={{ fontSize: isLg ? 10 : 8 }}>K</span>
           </div>
-
-          <div className="px-2.5 py-2.5 space-y-1.5 text-[10px] leading-snug text-ink-900 overflow-hidden">
-            {variant === 'menu' && (
-              <>
-                <BotBubble>{t.menu.welcome}</BotBubble>
-                <BotBubble>{t.menu.pick}</BotBubble>
-                <div className="space-y-1 pt-0.5">
-                  <ChatButton>{t.menu.btn1}</ChatButton>
-                  <ChatButton>{t.menu.btn2}</ChatButton>
-                  <ChatButton>{t.menu.btn3}</ChatButton>
-                  <ChatButton>{t.menu.btn4}</ChatButton>
-                </div>
-              </>
-            )}
-
-            {variant === 'receipt' && (
-              <>
-                <UserBubble>{t.receipt.user}</UserBubble>
-                <BotBubble>
-                  <div className="font-semibold">{t.receipt.bot1}</div>
-                  <div className="opacity-70 mt-0.5 text-[9px]">{t.receipt.bot2}</div>
-                </BotBubble>
-                <BotBubble>
-                  <div className="space-y-1">
-                    {t.receipt.items.map((row, i) => (
-                      <div
-                        key={i}
-                        className="flex items-baseline justify-between gap-1.5 text-[9px] border-b border-forest-900/10 pb-0.5 last:border-0 last:pb-0"
-                      >
-                        <span className="font-medium truncate">{row[0]}</span>
-                        <span className="opacity-60 shrink-0">{row[1]}</span>
-                        <span className="font-semibold shrink-0">{row[2]}</span>
-                      </div>
-                    ))}
-                  </div>
-                </BotBubble>
-                <BotBubble>
-                  <span className="text-terracotta-600 font-semibold text-[9px]">
-                    {t.receipt.bot3}
-                  </span>
-                </BotBubble>
-              </>
-            )}
-
-            {variant === 'waste' && (
-              <>
-                <UserBubble>{t.waste.user}</UserBubble>
-                <BotBubble>
-                  <div className="font-semibold mb-1 text-[9px]">{t.waste.bot1}</div>
-                  <div className="space-y-1">
-                    {t.waste.items.map((it, i) => (
-                      <div key={i} className="flex items-start gap-1.5">
-                        <span
-                          className="h-1.5 w-1.5 rounded-full mt-1 shrink-0"
-                          style={{ backgroundColor: dotColor(it.dot) }}
-                        />
-                        <div className="min-w-0">
-                          <div className="font-medium text-[9px]">{it.name}</div>
-                          <div className="opacity-60 text-[8px]">{it.sub}</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </BotBubble>
-              </>
-            )}
-          </div>
+          <span className="font-semibold truncate" style={{ color: '#111', fontSize: baseSize }}>kleero</span>
         </div>
 
-        <div className="absolute top-2 left-1/2 -translate-x-1/2 h-4 w-20 rounded-b-2xl bg-forest-900" />
+        <div
+          className="absolute inset-x-0 bottom-0 flex flex-col"
+          style={{ top: headerH, padding: isLg ? 8 : 6, gap: isLg ? 6 : 4 }}
+        >
+          {variant === 'menu' && (
+            <div
+              className="self-start shadow-sm"
+              style={{
+                background: '#fff',
+                borderRadius: isLg ? 8 : 6,
+                padding: isLg ? '7px 9px' : '5px 7px',
+                maxWidth: '90%',
+              }}
+            >
+              <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.35 }}>
+                {c.greetingPre}
+                <strong>{c.greetingBold}</strong>
+                {c.greetingPost}
+              </p>
+              <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.35, marginTop: 6 }}>
+                {c.prompt}
+              </p>
+              <div style={{ marginTop: 6, display: 'flex', flexDirection: 'column', gap: isLg ? 4 : 3 }}>
+                {c.options.map((opt: string[], i: number) => (
+                  <div
+                    key={i}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 5,
+                      color: '#111',
+                      fontSize: smSize,
+                    }}
+                  >
+                    <span style={{ fontWeight: 600 }}>{opt[0]}.</span>
+                    <span>{opt[1]}</span>
+                    <span>{opt[2]}</span>
+                  </div>
+                ))}
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  alignItems: 'center',
+                  marginTop: 4,
+                  fontSize: tinySize,
+                  color: '#888',
+                }}
+              >
+                <span>{c.time}</span>
+              </div>
+            </div>
+          )}
+
+          {variant === 'receipt' && (
+            <>
+              <div
+                className="self-end shadow-sm"
+                style={{
+                  background: '#D9FDD3',
+                  borderRadius: isLg ? 8 : 6,
+                  padding: 3,
+                  maxWidth: '60%',
+                }}
+              >
+                <div
+                  style={{
+                    height: isLg ? 90 : 70,
+                    borderRadius: 5,
+                    background: 'linear-gradient(135deg, #FAF7F2, #EAE2D0)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <div style={{ fontSize: isLg ? 22 : 18 }}>🧾</div>
+                  <div style={{ fontSize: tinySize, color: '#666', marginTop: 2 }}>
+                    {c.photoLabel}
+                  </div>
+                </div>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    alignItems: 'center',
+                    gap: 3,
+                    padding: '2px 4px 0',
+                    fontSize: tinySize,
+                    color: '#777',
+                  }}
+                >
+                  <span>{c.timeUser}</span>
+                  <DoubleTick size={isLg ? 12 : 10} />
+                </div>
+              </div>
+
+              <div
+                className="self-start shadow-sm"
+                style={{
+                  background: '#fff',
+                  borderRadius: isLg ? 8 : 6,
+                  padding: isLg ? '6px 9px' : '4px 7px',
+                  maxWidth: '82%',
+                }}
+              >
+                <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.35 }}>{c.analyzing}</p>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 2, fontSize: tinySize, color: '#888' }}>
+                  {c.timeBot1}
+                </div>
+              </div>
+
+              <div
+                className="self-start shadow-sm"
+                style={{
+                  background: '#fff',
+                  borderRadius: isLg ? 8 : 6,
+                  padding: isLg ? '7px 9px' : '5px 7px',
+                  maxWidth: '90%',
+                }}
+              >
+                <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.35, fontWeight: 600 }}>
+                  📃 {c.recognizedTitle}
+                </p>
+                <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.35, marginTop: 4, fontWeight: 600 }}>
+                  {c.store}
+                </p>
+                <div style={{ marginTop: 3, display: 'flex', flexDirection: 'column', gap: 1, color: '#333', fontSize: smSize }}>
+                  {c.items.map((item: string, i: number) => (
+                    <div key={i}>• {item}</div>
+                  ))}
+                </div>
+                <p style={{ color: '#0a8754', fontSize: smSize, lineHeight: 1.35, marginTop: 6, fontWeight: 500 }}>
+                  {c.footer}
+                </p>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 2, fontSize: tinySize, color: '#888' }}>
+                  {c.timeBot2}
+                </div>
+              </div>
+            </>
+          )}
+
+          {variant === 'waste' && (
+            <div
+              className="self-start shadow-sm"
+              style={{
+                background: '#fff',
+                borderRadius: isLg ? 8 : 6,
+                padding: isLg ? '7px 9px' : '5px 7px',
+                maxWidth: '94%',
+              }}
+            >
+              <p style={{ color: '#111', fontSize: smSize, lineHeight: 1.35, fontWeight: 600 }}>
+                📊 {c.title}
+              </p>
+              <p style={{ color: '#666', fontSize: tinySize, marginTop: 1 }}>{c.subtitle}</p>
+              <div style={{ marginTop: 6, display: 'flex', flexDirection: 'column', gap: isLg ? 4 : 3 }}>
+                {c.tiers.map((tier: any, i: number) => (
+                  <div
+                    key={i}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 5,
+                      color: '#111',
+                      fontSize: smSize,
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    <span
+                      className={colorClass[tier.color]}
+                      style={{
+                        width: isLg ? 7 : 6,
+                        height: isLg ? 7 : 6,
+                        borderRadius: 999,
+                        display: 'inline-block',
+                        marginTop: isLg ? 4 : 3,
+                        flexShrink: 0,
+                      }}
+                    />
+                    <div>
+                      <span style={{ fontWeight: 600 }}>{tier.label}:</span>{' '}
+                      <span style={{ color: '#444' }}>{tier.items}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p style={{ color: '#0a8754', fontSize: smSize, lineHeight: 1.35, marginTop: 6, fontWeight: 500 }}>
+                {c.savings}
+              </p>
+              <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 2, fontSize: tinySize, color: '#888' }}>
+                {c.time}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-  );
-}
-
-function BotBubble({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="max-w-[85%] rounded-2xl rounded-tl-md bg-cream-50 px-2.5 py-1.5 shadow-sm">
-      {children}
-    </div>
-  );
-}
-
-function UserBubble({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="ml-auto max-w-[75%] rounded-2xl rounded-tr-md bg-[#DCF8C6] px-2.5 py-1.5 shadow-sm">
-      {children}
-    </div>
-  );
-}
-
-function ChatButton({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="rounded-lg bg-cream-50 px-2.5 py-1.5 text-[10px] font-medium text-forest-600 shadow-sm border border-forest-600/10">
-      {children}
     </div>
   );
 }
