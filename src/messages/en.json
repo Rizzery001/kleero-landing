@@ -125,7 +125,9 @@
   },
   "footer": {
     "tagline": "AI savings inside WhatsApp.",
+    "contactLabel": "Contact",
     "contact": "Contact",
+    "legalLabel": "Legal",
     "legal": "Legal",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",

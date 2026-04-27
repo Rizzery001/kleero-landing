@@ -125,7 +125,9 @@
   },
   "footer": {
     "tagline": "Ahorro IA dentro de WhatsApp.",
+    "contactLabel": "Contacto",
     "contact": "Contacto",
+    "legalLabel": "Legal",
     "legal": "Legal",
     "privacy": "Política de Privacidad",
     "terms": "Términos de Servicio",
