@@ -8,7 +8,7 @@ export default function HowItWorks() {
   const steps = [
     { key: 'step1', variant: 'menu' as const },
     { key: 'step2', variant: 'receipt' as const },
-    { key: 'step3', variant: 'waste' as const },
+    { key: 'step3', variant: 'savings' as const },
   ];
 
   return (
