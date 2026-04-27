@@ -25,7 +25,7 @@ export default function LanguageSwitcher() {
 
   return (
     <div
-      className="inline-flex items-center rounded-full border border-forest-600/15 bg-cream-50 p-1 text-sm"
+      className="inline-flex items-center rounded-full border border-cream-50/20 bg-cream-50/10 backdrop-blur-md p-1 text-sm"
       role="group"
       aria-label={t('switchLanguage')}
     >
@@ -42,8 +42,8 @@ export default function LanguageSwitcher() {
               transition-all duration-200
               ${
                 active
-                  ? 'bg-forest-600 text-cream-50 shadow-sm'
-                  : 'text-ink-700 hover:text-forest-600'
+                  ? 'bg-cream-50 text-forest-700 shadow-sm'
+                  : 'text-cream-50/80 hover:text-cream-50'
               }
             `}
           >
