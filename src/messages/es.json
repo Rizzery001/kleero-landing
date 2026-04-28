@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "KLEERO — Ahorro inteligente para restaurantes en WhatsApp",
-    "description": "Ahorra $5,000+ al año en proveedores. Asistente IA para restaurantes pequeños en WhatsApp. Demo gratis, sin instalar nada."
+    "description": "Ahorra $100,000+ al año en proveedores. Asistente IA para restaurantes pequeños en WhatsApp. Demo gratis, sin instalar nada."
   },
   "nav": {
     "switchLanguage": "Cambiar idioma"
@@ -11,7 +11,7 @@
     "title_1": "Ahorro inteligente",
     "title_2": "para tu restaurante",
     "title_3": "directamente en WhatsApp.",
-    "subtitle": "Ahorra $5,000+ al año en proveedores. Sin apps. Sin setup. 60 segundos hasta el primer resultado.",
+    "subtitle": "Ahorra $100,000+ al año en proveedores. Sin apps. Sin setup. 60 segundos hasta el primer resultado.",
     "ctaWhatsapp": "Abrir en WhatsApp",
     "ctaTelegram": "Abrir en Telegram",
     "ctaPrimary": "Probar el demo en Telegram",
@@ -28,19 +28,19 @@
     "title": "Tu margen vive o muere por tres cosas.",
     "subtitle": "Revisamos decenas de cocinas pequeñas. Las mismas fugas, siempre.",
     "card1": {
-      "amount": "$3,000+",
+      "amount": "$60,000+",
       "amountLabel": "perdidos al año",
       "title": "Pagas de más a proveedores",
       "body": "No sabes qué proveedor es el más barato. KLEERO escanea tus recibos y encuentra dónde comprar 8–15% más barato cerca de ti."
     },
     "card2": {
-      "amount": "$2,000+",
+      "amount": "$40,000+",
       "amountLabel": "tirados al año",
       "title": "Comida que se desperdicia",
       "body": "KLEERO analiza tu menú y predice qué productos se van a echar a perder primero — así ordenas más inteligente y desperdicias menos."
     },
     "card3": {
-      "amount": "$1,200+",
+      "amount": "$24,000+",
       "amountLabel": "perdidos por evento",
       "title": "Días ocupados que pierdes",
       "body": "Encuentra conciertos, festivales y eventos deportivos cerca — y recibe un plan de preparación antes de que llegue la avalancha."
@@ -118,7 +118,7 @@
   },
   "finalCta": {
     "title": "¿Listo para ahorrar",
-    "titleHighlight": "$5,000+",
+    "titleHighlight": "$100,000+",
     "titleEnd": "este año?",
     "subtitle": "Abre KLEERO en WhatsApp o Telegram. Demo gratis. Sin setup. 60 segundos.",
     "ctaWhatsapp": "Empezar en WhatsApp",
