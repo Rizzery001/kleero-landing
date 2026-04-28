@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
 import Logo from './Logo';
 
 export default function Footer() {
@@ -34,20 +35,20 @@ export default function Footer() {
             </h4>
             <ul className="space-y-1.5">
               <li>
-                <a
+                <Link
                   href="/privacy"
                   className="text-forest-700 hover:text-terracotta-500 transition-colors text-[15px]"
                 >
                   {t('privacy')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/terms"
                   className="text-forest-700 hover:text-terracotta-500 transition-colors text-[15px]"
                 >
                   {t('terms')}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

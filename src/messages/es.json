@@ -14,6 +14,7 @@
     "subtitle": "Ahorra $5,000+ al año en proveedores. Sin apps. Sin setup. 60 segundos hasta el primer resultado.",
     "ctaWhatsapp": "Abrir en WhatsApp",
     "ctaTelegram": "Abrir en Telegram",
+    "ctaPrimary": "Probar el demo en Telegram",
     "ctaMicro": "Sin registro · Demo gratis · 60 segundos hasta el primer resultado",
     "phoneCaption": "Demo en vivo · WhatsApp"
   },
@@ -121,7 +122,8 @@
     "titleEnd": "este año?",
     "subtitle": "Abre KLEERO en WhatsApp o Telegram. Demo gratis. Sin setup. 60 segundos.",
     "ctaWhatsapp": "Empezar en WhatsApp",
-    "ctaTelegram": "Empezar en Telegram"
+    "ctaTelegram": "Empezar en Telegram",
+    "ctaPrimary": "Empezar el demo en Telegram"
   },
   "footer": {
     "tagline": "Ahorro IA dentro de WhatsApp.",

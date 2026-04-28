@@ -1,10 +1,12 @@
 import { useTranslations } from 'next-intl';
+import { FEATURES } from '@/lib/featureFlags';
 import { whatsappLink } from '@/lib/links';
 
 const ROWS = ['channel', 'setup', 'cost', 'languages', 'suppliers', 'ocr', 'events'] as const;
 
 export default function Comparison() {
   const t = useTranslations('comparison');
+
   return (
     <section className="section-y">
       <div className="container-x">
@@ -28,7 +30,7 @@ export default function Comparison() {
             {ROWS.map((row, i) => (
               <div key={row} className={`grid grid-cols-3 ${i !== ROWS.length - 1 ? 'border-b border-line' : ''}`}>
                 <div className="px-3 sm:px-5 py-3 sm:py-4 text-xs sm:text-[13px] text-ink-700 font-medium border-r border-line flex items-center">{t(`rows.${row}.label`)}</div>
-                <div className="px-3 sm:px-5 py-3 sm:py-4 text-xs sm:text-[14px] font-medium text-forest-700 bg-forest-50/40 border-r border-line flex items-center">{t(`rows.${row}.kleero`)}</div>
+                <div className="px-3 sm:px-5 py-3 sm:py-4 text-xs sm:text-[14px] font-medium text-forest-700 bg-forest-50/40 border-r border-line flex items-center">{row === 'channel' && !FEATURES.SHOW_WHATSAPP ? 'Telegram' : t(`rows.${row}.kleero`)}</div>
                 <div className="px-3 sm:px-5 py-3 sm:py-4 text-xs sm:text-[14px] text-ink-500 flex items-center">{t(`rows.${row}.others`)}</div>
               </div>
             ))}
